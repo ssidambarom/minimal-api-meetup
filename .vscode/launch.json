@@ -1,0 +1,113 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "name": "Controllers",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-controllers",
+            "program": "${workspaceFolder}/01-ArticleWithControllers/bin/Debug/net7.0/01-ArticleWithControllers.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/01-ArticleWithControllers",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "minimal-api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-minimal-api",
+            "program": "${workspaceFolder}/02-ArticleWithMinimalApi/bin/Debug/net7.0/02-ArticleWithMinimalApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/02-ArticleWithMinimalApi",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "minimal-api-swagger-details",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-minimal-api-swagger-details",
+            "program": "${workspaceFolder}/03-ArticleWithMinimalApiSwaggerDetails/bin/Debug/net7.0/03-ArticleWithMinimalApiSwaggerDetails.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/03-ArticleWithMinimalApiSwaggerDetails",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "minimal-api-swagger-filtering",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-minimal-api-filtering",
+            "program": "${workspaceFolder}/04-ArticleWithMinimalApiWithFilter/bin/Debug/net7.0/04-ArticleWithMinimalApiWithFilter.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/04-ArticleWithMinimalApiWithFilter",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "minimal-api-swagger-route-group",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-minimal-api-route-group",
+            "program": "${workspaceFolder}/05-ArticleWithMinimalApiWithRouteGroup/bin/Debug/net7.0/05-ArticleWithMinimalApiWithRouteGroup.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/05-ArticleWithMinimalApiWithRouteGroup",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
