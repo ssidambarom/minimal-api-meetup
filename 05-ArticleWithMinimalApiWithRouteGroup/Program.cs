@@ -27,58 +27,6 @@ app.UseHttpsRedirection();
 
 var articles = app.MapGroup("/articles");
 
-
-// articles.MapGet("/", async (ArticleDbContext db) =>
-//     await db.Articles.ToListAsync());
-
-
-// articles.MapGet("/is-online", async (ArticleDbContext db) =>
-//     await db.Articles.Where(t => t.IsOnline).ToListAsync());
-
-// articles.MapGet("/{id}", async (int id, ArticleDbContext db) =>
-//     await db.Articles.FindAsync(id)
-//         is Article article
-//             ? Results.Ok(article)
-//             : Results.NotFound());
-
-// articles.MapPost("/", async (Article article, ArticleDbContext db) =>
-// {
-//     db.Articles.Add(article);
-//     await db.SaveChangesAsync();
-
-//     return Results.Created($"/articles/{article.Id}", article);
-// });
-
-// articles.MapPut("/{id}", async (int id, Article updatedArticle, ArticleDbContext db) =>
-// {
-//     var articleFound = await db.Articles.FindAsync(id);
-
-//     if (articleFound is null) return Results.NotFound();
-
-//     articleFound!.Title = updatedArticle.Title;
-//     articleFound.PublishedDate = updatedArticle.PublishedDate;
-//     articleFound.Author = updatedArticle.Author;
-//     articleFound.IsOnline = updatedArticle.IsOnline;
-// Task.Delay(6000);
-
-//     await db.SaveChangesAsync();
-
-//     return Results.NoContent();
-// });
-
-// articles.MapDelete("/{id}", async (int id, ArticleDbContext db) =>
-// {
-//     if (await db.Articles.FindAsync(id) is Article article)
-//     {
-//         db.Articles.Remove(article);
-//         await db.SaveChangesAsync();
-//         return Results.Ok(article);
-//     }
-
-//     return Results.NotFound();
-// });
-
-
 articles.MapArticleApi()
     .AddEndpointFilter<WaringTimoutFilter>();
 
@@ -148,13 +96,11 @@ public class WaringTimoutFilter : IEndpointFilter
     public const int TimeOutInMillisecond = 5000;
     private readonly Stopwatch _stopWatch;
     private ILogger _logger;
-
     public WaringTimoutFilter(ILoggerFactory loggerFactory, Stopwatch stopWatch)
     {
         _logger = loggerFactory.CreateLogger<WaringTimoutFilter>();
         _stopWatch = stopWatch;
     }
-
     public async ValueTask<object?> InvokeAsync(
         EndpointFilterInvocationContext efiContext,
         EndpointFilterDelegate next)
@@ -165,8 +111,17 @@ public class WaringTimoutFilter : IEndpointFilter
 
         _stopWatch.Stop();
         if (_stopWatch.ElapsedMilliseconds > TimeOutInMillisecond)
-            _logger.LogWarning("request: {route} is higher than timeout {timeout}", efiContext.HttpContext.Request.Path, TimeOutInMillisecond);
+            _logger.LogWarning(
+                "request: {route} is higher than timeout {timeout}",
+                efiContext.HttpContext.Request.Path,
+                TimeOutInMillisecond);
 
         return followup;
     }
 }
+
+
+
+
+
+

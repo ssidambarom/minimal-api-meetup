@@ -115,7 +115,6 @@ app.Run();
 public class ArticleIsValidFilter : IEndpointFilter
 {
     private ILogger _logger;
-
     public ArticleIsValidFilter(ILoggerFactory loggerFactory)
     {
         _logger = loggerFactory.CreateLogger<ArticleIsValidFilter>();

@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<ArticleDbContext>(opt => opt.UseInMemoryDatabase("ArticlesDb"));
+builder.Services.AddDbContext<ArticleDbContext>(opt
+    => opt.UseInMemoryDatabase("ArticlesDb"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -42,6 +43,7 @@ app.MapGet("/articles/{id}", async (int id, ArticleDbContext db) =>
             ? Results.Ok(article)
             : Results.NotFound())
     .Produces<Article>(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status404NotFound)
     .WithName("GetArticleDetails")
     .WithTags("Getters");
 
@@ -54,7 +56,7 @@ app.MapPost("/articles", async (Article article, ArticleDbContext db) =>
 })
     .Produces<Article>(StatusCodes.Status201Created)
     .WithName("CreateArticle")
-    .WithTags("Getters");
+    .WithTags("Setters");
 
 app.MapPut("/articles/{id}", async (int id, Article updatedArticle, ArticleDbContext db) =>
 {
@@ -72,6 +74,7 @@ app.MapPut("/articles/{id}", async (int id, Article updatedArticle, ArticleDbCon
     return Results.NoContent();
 })
     .Produces(StatusCodes.Status204NoContent)
+    .Produces(StatusCodes.Status404NotFound)
     .WithName("UpdateArticle")
     .WithTags("Setters");
 
@@ -87,6 +90,7 @@ app.MapDelete("/articles/{id}", async (int id, ArticleDbContext db) =>
     return Results.NotFound();
 })
     .Produces(StatusCodes.Status204NoContent)
+    .Produces(StatusCodes.Status404NotFound)
     .WithName("DeleteArticle")
     .WithTags("Setters");
 
